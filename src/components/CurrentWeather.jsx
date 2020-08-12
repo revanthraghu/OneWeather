@@ -1,7 +1,6 @@
 //http://openweathermap.org/img/wn/10d@2x.png
 import React from 'react'
 import axios from 'axios'
-import DailyWeather from './DailyWeather/DailyWeather'
 
 class CurrentWeather extends React.Component {
     constructor(props) {
@@ -49,7 +48,7 @@ class CurrentWeather extends React.Component {
     }
 
     render() {
-        const {current, daily, hourly}  = this.props.weather
+        const {current}  = this.props.weather
         return (
             <React.Fragment>
                 <div style={{fontFamily: 'sans-serif', color: 'white', zIndex: '1', position: 'fixed', width: '100vw', padding: '30px', paddingLeft: '100px'}}>
@@ -76,7 +75,6 @@ class CurrentWeather extends React.Component {
                         </div>
                     </div>
                 </div>
-                <DailyWeather data={daily} />
             </React.Fragment>
         )
     }

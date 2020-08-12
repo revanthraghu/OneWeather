@@ -35,7 +35,7 @@ export default class DailyWeather extends Component{
 
         return(
             <div>
-                <div style={{fontSize:'25px',color:'white',position:'absolute'}}>12</div>
+                <div style={{fontSize:'25px',color:'white',position:'absolute', top:'20px'}}>12</div>
             </div>
         );
     }

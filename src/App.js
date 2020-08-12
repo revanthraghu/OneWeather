@@ -4,13 +4,14 @@ import data from './data/data.json'
 import axios from 'axios'
 import styled from 'styled-components'
 import Details from './components/Details'
+import DailyWeather from './components/DailyWeather/DailyWeather';
 
 const VideoContainer = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 100%; 
+    height: 3000px; 
     overflow: hidden;
     video {
         min-width: 100%; 
@@ -117,6 +118,7 @@ class App extends React.Component {
             <CurrentWeather saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
             <Details current={this.state.data.current}/>
           </div>
+          <DailyWeather data={this.state.data.daily} />
         </React.Fragment>
       );
     }

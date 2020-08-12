@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import CurrentWeather from './components/CurrentWeather'
 import data from './data/data.json'
 import axios from 'axios'
@@ -50,6 +51,17 @@ class App extends React.Component {
       );
     }
   }
+=======
+import Landing from './Components/Landing';
+
+function App() {
+  // console.log(process.env.REACT_APP_MY_SECRET_KEY)
+  return (
+    <div>
+      <Landing />
+    </div>
+  );
+>>>>>>> ef9653586d4b5aa58bca78752569d2ff645a85ea
 }
 
 export default App;

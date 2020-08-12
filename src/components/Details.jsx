@@ -6,7 +6,7 @@ const DeatilsWrapper = styled.div`
     width: 70%;
     z-index: 1;
     padding: 10px 20px 0px 20px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
     height: max-content;
     border-radius: 4px;
     display: flex;
@@ -87,11 +87,11 @@ function Details(props) {
                         </Item>
                         <Item>
                             <div>Sunrise</div>
-                            <div>{new Date(props.current.sunrise*1000).toLocaleTimeString()}</div>
+                            <div>{new Date(props.current.sunrise*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </Item>
                         <Item style={{borderBottom: 'none'}}>
                             <div>Sunset</div>
-                            <div>{new Date(props.current.sunset*1000).toLocaleTimeString()}</div>
+                            <div>{new Date(props.current.sunset*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </Item>
                 
                     </div>

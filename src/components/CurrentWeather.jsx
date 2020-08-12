@@ -1,4 +1,3 @@
-//http://openweathermap.org/img/wn/10d@2x.png
 import React from 'react'
 import axios from 'axios'
 
@@ -50,7 +49,7 @@ class CurrentWeather extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div style={{fontFamily: 'sans-serif', color: 'white', zIndex: '1', position: 'fixed', width: '100vw', padding: '30px', paddingLeft: '100px'}}>
+                <div style={{textShadow: '1px 1px 1px black', fontFamily: 'sans-serif', color: 'white', zIndex: '1', width: '50%', padding: '30px', paddingLeft: '100px'}}>
                     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '400px'}}>
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '120px'}}>
                             <div style={{fontWeight: 'bold', fontSize: '4rem'}}>{this.state.location}</div>

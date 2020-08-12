@@ -1,9 +1,9 @@
 import React from 'react';
-
 import CurrentWeather from './components/CurrentWeather'
 import data from './data/data.json'
 import axios from 'axios'
 import styled from 'styled-components'
+import Details from './components/Details'
 
 const VideoContainer = styled.div`
     position: absolute;
@@ -113,7 +113,10 @@ class App extends React.Component {
                 <source src={this.setVideo()} type='video/mp4'/> 
             </video>
           </VideoContainer>
-          <CurrentWeather saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
+          <div style={{display: 'flex', height: 'max-content'}}>
+            <CurrentWeather saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
+            <Details current={this.state.data.current}/>
+          </div>
         </React.Fragment>
       );
     }

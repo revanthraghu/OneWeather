@@ -3,7 +3,11 @@ import CurrentWeather from './components/CurrentWeather'
 import data from './data/data.json'
 import axios from 'axios'
 import styled from 'styled-components'
+<<<<<<< HEAD
 import Details from './components/Details'
+=======
+import DailyWeather from './components/DailyWeather/DailyWeather';
+>>>>>>> 8398570a2704eec3831af5a18b44f532dd3d49d8
 
 const VideoContainer = styled.div`
     position: absolute;

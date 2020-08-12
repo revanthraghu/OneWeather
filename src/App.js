@@ -41,29 +41,29 @@ class App extends React.Component {
 
   getPosition = (position) => {
     //get weather daat from api
-    try {
-      axios({
-        method: 'GET',
-        baseURL: 'https://api.openweathermap.org/data/2.5',
-        url: '/onecall',
-        params: { 
-          lat: position.coords.latitude, 
-          lon: position.coords.longitude,
-          exclude: 'minutely',
-          units: 'metric',
-          appid: process.env.REACT_APP_MY_SECRET_KEY
-        }
-      })
-      .then(res => this.setState({
-        data: res.data, 
-        lat: position.coords.latitude, 
-        lon: position.coords.longitude
-      }))
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   axios({
+    //     method: 'GET',
+    //     baseURL: 'https://api.openweathermap.org/data/2.5',
+    //     url: '/onecall',
+    //     params: { 
+    //       lat: position.coords.latitude, 
+    //       lon: position.coords.longitude,
+    //       exclude: 'minutely',
+    //       units: 'metric',
+    //       appid: process.env.REACT_APP_MY_SECRET_KEY
+    //     }
+    //   })
+    //   .then(res => this.setState({
+    //     data: res.data, 
+    //     lat: position.coords.latitude, 
+    //     lon: position.coords.longitude
+    //   }))
+    // } catch (error) {
+    //   console.log(error)
+    // }
       //temporarily using saved data to avoid extra api calls
-      //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+      this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
   }
 
   componentDidMount() {
@@ -73,6 +73,31 @@ class App extends React.Component {
       navigator.geolocation.getCurrentPosition(this.getPosition);
     }
   }
+
+  setVideo = () => {
+    let name = this.state.data.current.weather[0].main
+    if(name === 'Thunderstorm') {
+        return 'thunderstorm.mp4'
+    }
+    else if(name === 'Drizzle') {
+        return 'drizzle.mp4'
+    }
+    else if(name === 'Rain') {
+        return 'rain.mp4'
+    }
+    else if(name === 'Snow') {
+        return 'snow.mp4'
+    }
+    else if(name === 'Clear') {
+        return 'clear.mp4'
+    }
+    else if(name === 'Clouds') {
+        return 'clouds.mp4'
+    }
+    else {
+        return 'atmosphere.mp4'
+    }
+}
 
   render() {
     if(Object.keys(this.state.data).length === 0) {
@@ -85,7 +110,7 @@ class App extends React.Component {
         <React.Fragment>
           <VideoContainer>
             <video autoPlay muted loop>
-                <source src='thunderstorm.mp4' type='video/mp4'/> 
+                <source src={this.setVideo()} type='video/mp4'/> 
             </video>
           </VideoContainer>
           <CurrentWeather saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>

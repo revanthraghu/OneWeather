@@ -15,14 +15,14 @@ class CurrentWeather extends React.Component {
     }
 
     componentDidMount() {
-        try {
-            axios.get('http://ip-api.com/json/').then(res => this.setState({location: res.data.city}))
-        } catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     axios.get('http://ip-api.com/json/').then(res => this.setState({location: res.data.city}))
+        // } catch (error) {
+        //     console.log(error)
+        // }
     }
 
-    setIcon() {
+    setIcon = () => {
         let name = this.props.weather.weather[0].main
         if(name === 'Thunderstorm') {
             return 'thunderstorm.png'

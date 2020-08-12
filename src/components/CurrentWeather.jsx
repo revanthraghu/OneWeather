@@ -1,6 +1,7 @@
 //http://openweathermap.org/img/wn/10d@2x.png
 import React from 'react'
 import styled from 'styled-components'
+import DailyWeather from './DailyWeather/DailyWeather'
 
 const VideoContainer = styled.div`
     position: absolute;
@@ -26,6 +27,7 @@ class CurrentWeather extends React.Component {
         super(props)
     }
     render() {
+        const {current, daily, hourly}  = this.props.weather
         return (
             <React.Fragment>
                 <VideoContainer>
@@ -34,8 +36,9 @@ class CurrentWeather extends React.Component {
                     </video>
                 </VideoContainer>
                 <div style={{color: 'white', zIndex: '1', position: 'fixed'}}>
-                    {this.props.weather.temp}
+                    {current.temp}
                 </div>
+                <DailyWeather data={daily} />
             </React.Fragment>
         )
     }

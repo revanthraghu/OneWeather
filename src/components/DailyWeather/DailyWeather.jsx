@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Component } from 'react'
-
+import HourlyWeather from './HourlyWeather'
 
 const Tooltip = styled.span`
     visibility: hidden;
@@ -31,33 +31,44 @@ const Tooltip = styled.span`
 
 
 const Table = styled.table`
-    background: black;
-    opacity: 0.8;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 10px;
 `;
 
 const Day = styled.td`
     padding: 10px;
+    border-bottom: 1px solid rgb(150,150,150);
 `;
 
 const Weather = styled.td`
     padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(150,150,150);
     `;
 
 const MaxTemp = styled.td`
     padding: 10px;
-    color: rgb(255,30,0);
+    color: #F44336;
+    border-bottom: 1px solid rgb(150,150,150);
+    text-align: center;
 `;
 
 const Perception = styled.td`
     position: relative;
     padding: 10px;
+    border-bottom: 1px solid rgb(150,150,150);
+    text-align: center;
     &:hover ${Tooltip}{
         visibility: visible;
     }
 `;
 const MinTemp = styled.td`
     padding: 10px;
-    color: rgb(0,100,255);
+    color: #65a4f1;
+    border-bottom: 1px solid rgb(150,150,150);
+    text-align: center;
 `;
 
 
@@ -83,33 +94,46 @@ export default class DailyWeather extends Component{
         return e.toFixed(0)+'%';
     }
 
-    render(){
-        const {data} = this.props;
-        console.log(data)
-        
+    setIcon = (name) => {
+        if(name === 'Thunderstorm') {
+            return 'thunderstorm.png'
+        }
+        else if(name === 'Drizzle') {
+            return 'drizzle.png'
+        }
+        else if(name === 'Rain') {
+            return 'rain.png'
+        }
+        else if(name === 'Snow') {
+            return 'snow.png'
+        }
+        else if(name === 'Clear') {
+            return 'clear.png'
+        }
+        else if(name === 'Clouds') {
+            return 'cloud.png'
+        }
+        else {
+            return 'haze.png'
+        }
+    }
 
-        let mainWeather = data[0].weather[0].main
-        console.log(mainWeather)
-        
-        let percep = data[0].pop
-        console.log(percep*100+'%')
-        
-        let maxTemp = data[0].temp.max
-        console.log(maxTemp)//&#8451
-        
-        let minTemp = data[0].temp.min
-        console.log(minTemp)
+    render(){
+        const {data, hourly} = this.props;        
 
         return(
-            <div style={{fontSize:'25px',color:'white',position:'absolute', top:'600px',left:'200px'}}>
-                <Table>
-                    <tbody>
+            <div style={{fontFamily: 'sans-serif', fontSize:'1.2rem',color:'white', position: 'relative', minHeight: '600px'}}>
+                <div style={{flexDirection: 'column', alignItems: 'center', display: 'flex', padding: '10px 20px 0px 20px', width: '557.767px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '4px', position: 'absolute', right: '270px', width: '557.767px'}}>
+                <div style={{borderBottom: '2px solid white', padding: '5px', width: '100%'}}>Forecast</div>
+                    <HourlyWeather hourly={hourly}/>
+                    <Table>
+                    <tbody style={{padding: '20px'}}>
                         {data.map(e=>(
                             <tr key={e.dt}>
                                 <Day>{this.findDay(e.dt)}</Day>
 
                                 <Weather>
-                                    {e.weather[0].main}
+                                    <img style={{height: '32px', width: '32px'}} src={this.setIcon(e.weather[0].main)} alt=""/>
                                 </Weather>
                                 
                                 <Perception>
@@ -118,19 +142,17 @@ export default class DailyWeather extends Component{
                                 </Perception>
                                 
                                 <MaxTemp>
-                                    {e.temp.max}&deg;
-                                    {/* <MaxTempTip>Max. Temp</MaxTempTip> */}
+                                    {Math.round(e.temp.max)}&deg;
                                 </MaxTemp>
                                 
                                 <MinTemp>
-                                    {e.temp.min}&deg;
+                                    {Math.round(e.temp.min)}&deg;
                                 </MinTemp>
-
-
                             </tr>
                         ))}
                     </tbody>
                 </Table>
+                </div>
             </div>
         );
     }

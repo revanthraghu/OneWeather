@@ -5,19 +5,19 @@ class CurrentWeather extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            location: 'Bengaluru',
+            location: '',
             search: false,
             input: '',
-            country: 'India'
+            country: ''
         }
     }
 
     componentDidMount() {
-        // try {
-        //     axios.get('https://ipapi.co/json/').then(res => this.setState({location: res.data.city, country: res.data.country_name}))
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+            axios.get('https://ipapi.co/json/').then(res => this.setState({location: res.data.city, country: res.data.country_name}))
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     setIcon = () => {

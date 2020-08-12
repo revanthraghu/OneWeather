@@ -11,7 +11,7 @@ const VideoContainer = styled.div`
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 3000px; 
+    height: 100%; 
     overflow: hidden;
     video {
         min-width: 100%; 
@@ -42,29 +42,29 @@ class App extends React.Component {
 
   getPosition = (position) => {
     //get weather daat from api
-    // try {
-    //   axios({
-    //     method: 'GET',
-    //     baseURL: 'https://api.openweathermap.org/data/2.5',
-    //     url: '/onecall',
-    //     params: { 
-    //       lat: position.coords.latitude, 
-    //       lon: position.coords.longitude,
-    //       exclude: 'minutely',
-    //       units: 'metric',
-    //       appid: process.env.REACT_APP_MY_SECRET_KEY
-    //     }
-    //   })
-    //   .then(res => this.setState({
-    //     data: res.data, 
-    //     lat: position.coords.latitude, 
-    //     lon: position.coords.longitude
-    //   }))
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    try {
+      axios({
+        method: 'GET',
+        baseURL: 'https://api.openweathermap.org/data/2.5',
+        url: '/onecall',
+        params: { 
+          lat: position.coords.latitude, 
+          lon: position.coords.longitude,
+          exclude: 'minutely',
+          units: 'metric',
+          appid: process.env.REACT_APP_MY_SECRET_KEY
+        }
+      })
+      .then(res => this.setState({
+        data: res.data, 
+        lat: position.coords.latitude, 
+        lon: position.coords.longitude
+      }))
+    } catch (error) {
+      console.log(error)
+    }
       //temporarily using saved data to avoid extra api calls
-      this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+      //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
   }
 
   componentDidMount() {
@@ -118,7 +118,7 @@ class App extends React.Component {
             <CurrentWeather saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
             <Details current={this.state.data.current}/>
           </div>
-          <DailyWeather data={this.state.data.daily} />
+          <DailyWeather hourly={this.state.data.hourly} data={this.state.data.daily} />
         </React.Fragment>
       );
     }

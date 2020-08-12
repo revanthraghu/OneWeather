@@ -7,13 +7,14 @@ class CurrentWeather extends React.Component {
         this.state = {
             location: 'Bengaluru',
             search: false,
-            input: ''
+            input: '',
+            country: 'India'
         }
     }
 
     componentDidMount() {
         // try {
-        //     axios.get('http://ip-api.com/json/').then(res => this.setState({location: res.data.city}))
+        //     axios.get('https://ipapi.co/json/').then(res => this.setState({location: res.data.city, country: res.data.country_name}))
         // } catch (error) {
         //     console.log(error)
         // }
@@ -73,6 +74,7 @@ class CurrentWeather extends React.Component {
                                     </span>
                                 </span>
                             </div>
+                            <div style={{fontSize: '1.5rem', marginBottom: '1rem'}}>{this.state.country}</div>
                             <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString() + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </div>
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '180px'}}>

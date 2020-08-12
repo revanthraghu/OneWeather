@@ -35,8 +35,8 @@ function setIcon(name) {
 function HourlyWeather(props) {
     return (
         <Wrapper>
-            {props.hourly.map(hour => 
-            <div style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', display: 'flex', fontSize: 'small', padding: '0 20px'}}>
+            {props.hourly.map((hour, index) => 
+            <div key={index} style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'column', display: 'flex', fontSize: 'small', padding: '0 20px'}}>
                 <div style={{width: 'max-content'}}>{new Date(hour.dt*1000).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true })}</div>
                 <img style={{height: '32px', width: '32px'}} src={setIcon(hour.weather[0].main)} alt=""></img>
                 <div>{Math.round(hour.temp)}&deg;</div>

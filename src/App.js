@@ -36,8 +36,8 @@ class App extends React.Component {
     }
   }
 
-  saveData = (data) => {
-    this.setState({data: data})
+  saveData = (data, lat, lon) => {
+    this.setState({data: data, lat: lat, lon: lon})
   }
 
   getPosition = (position) => {
@@ -75,28 +75,29 @@ class App extends React.Component {
     }
   }
 
-  setVideo = () => {
-    let name = this.state.data.current.weather[0].main
+  setVideo = (name) => {
     if(name === 'Thunderstorm') {
-        return 'thunderstorm.mp4'
+        return <video autoPlay muted loop>
+            <source src="thunderstorm.mp4" type='video/mp4'/> 
+          </video>
     }
     else if(name === 'Drizzle') {
-        return 'drizzle.mp4'
+      return  <video key={name} autoPlay muted loop><source src="drizzle.mp4" type='video/mp4'/></video>
     }
     else if(name === 'Rain') {
-        return 'rain.mp4'
+        return <video key={name} autoPlay muted loop><source src="rain.mp4" type='video/mp4'/></video>
     }
     else if(name === 'Snow') {
-        return 'snow.mp4'
+        return <video key={name} autoPlay muted loop><source src="snow.mp4" type='video/mp4'/></video>
     }
     else if(name === 'Clear') {
-        return 'clear.mp4'
+        return <video key={name} autoPlay muted loop><source src="clear.mp4" type='video/mp4'/></video>
     }
     else if(name === 'Clouds') {
-        return 'clouds.mp4'
+        return <video key={name} autoPlay muted loop><source src="clouds.mp4" type='video/mp4'/></video>
     }
     else {
-        return 'atmosphere.mp4'
+        return <video key={name} autoPlay muted loop><source src="atmosphere.mp4" type='video/mp4'/></video>
     }
 }
 
@@ -110,12 +111,10 @@ class App extends React.Component {
       return (
         <React.Fragment>
           <VideoContainer>
-            <video autoPlay muted loop>
-                <source src={this.setVideo()} type='video/mp4'/> 
-            </video>
+            {this.setVideo(this.state.data.current.weather[0].main)}
           </VideoContainer>
           <div style={{display: 'flex', height: 'max-content'}}>
-            <CurrentWeather saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
+            <CurrentWeather coords={[this.state.lat, this.state.lon]} saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
             <Details current={this.state.data.current}/>
           </div>
           <DailyWeather hourly={this.state.data.hourly} data={this.state.data.daily} />

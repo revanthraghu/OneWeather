@@ -13,11 +13,13 @@ class CurrentWeather extends React.Component {
     }
 
     componentDidMount() {
-        try {
-            axios.get('https://ipapi.co/json/').then(res => this.setState({location: res.data.city, country: res.data.country_name}))
-        } catch (error) {
-            console.log(error)
-        }
+            try {
+                axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.coords[0]}+${this.props.coords[1]}&key=1c6911666853447eac0030866cf19765`)
+                .then(res => {
+                    this.setState({location: res.data.results[0].components.city, country: res.data.results[0].components.country})})
+            } catch (error) {
+                console.log(error)
+            }
     }
 
     setIcon = () => {
@@ -51,6 +53,46 @@ class CurrentWeather extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        let lat = '', lon = ''
+        axios({
+            method: 'GET',
+            url: 'https://api.opencagedata.com/geocode/v1/json',
+            params: {q: this.state.input, key: '1c6911666853447eac0030866cf19765'}
+        })
+        .then(res => {
+            lat = res.data.results[0].geometry.lat
+            lon = res.data.results[0].geometry.lng
+            try {
+                axios({
+                  method: 'GET',
+                  baseURL: 'https://api.openweathermap.org/data/2.5',
+                  url: '/onecall',
+                  params: { 
+                    lat: lat, 
+                    lon: lon,
+                    exclude: 'minutely',
+                    units: 'metric',
+                    appid: process.env.REACT_APP_MY_SECRET_KEY
+                  }
+                })
+                .then(res => {
+                    try {
+                        axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=1c6911666853447eac0030866cf19765`)
+                        .then(res => {
+                            this.setState({location: res.data.results[0].components.city, country: res.data.results[0].components.country})})
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    return res
+                })
+                .then(res => {
+                    this.props.saveData(res.data, lat, lon)
+                })
+              } catch (error) {
+                console.log(error)
+              }
+        })
+        .catch(err => console.log(err))
     }
 
     handleChange = (e) => {

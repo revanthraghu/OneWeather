@@ -5,17 +5,16 @@ class CurrentWeather extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            location: 'Bengaluru'
+            location: 'Bengaluru',
+            search: false,
+            input: '',
+            country: 'India'
         }
-    }
-
-    handleChange = (e) => {
-        this.setState({location: e.target.value})
     }
 
     componentDidMount() {
         // try {
-        //     axios.get('http://ip-api.com/json/').then(res => this.setState({location: res.data.city}))
+        //     axios.get('https://ipapi.co/json/').then(res => this.setState({location: res.data.city, country: res.data.country_name}))
         // } catch (error) {
         //     console.log(error)
         // }
@@ -46,14 +45,37 @@ class CurrentWeather extends React.Component {
         }
     }
 
+    handleClick = (e) => {
+        this.setState(prevState=> {return {search: !prevState.search}})
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    handleChange = (e) => {
+        this.setState({input: e.target.value})
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div style={{textShadow: '1px 1px 1px black', fontFamily: 'sans-serif', color: 'white', zIndex: '1', width: '50%', padding: '30px', paddingLeft: '100px'}}>
-                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '400px'}}>
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '390px'}}>
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '120px'}}>
-                            <div style={{fontWeight: 'bold', fontSize: '4rem'}}>{this.state.location}</div>
-                            <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString() + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString()}</div>
+                            <div style={{fontWeight: 'bold', fontSize: '4rem', position: "relative"}}>
+                                {this.state.location}
+                                <span style={{marginLeft: '15px'}}>
+                                    <button onClick={this.handleClick} style={{position: 'absolute', top: '20px', fontSize: '25px', backgroundColor: '#4CAF50', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px'}}><i className="fas fa-search"></i></button>
+                                    <span style={{boxShadow: '0px 5px 10px 1px rgba(0,0,0,0.5)', borderRadius: '4px', border: '1px solid rgb(200,200,200)', backgroundColor: 'white', padding: '20px', position: 'absolute', bottom: '-70px', right: '70px', display: this.state.search === true ? 'block' : 'none'}}>
+                                        <form style={{display: 'flex', alignItems: 'center'}} onSubmit={this.handleSubmit}>
+                                            <input onChange={this.handleChange} value={this.state.input} type="text" placeholder="Enter city name" />
+                                        </form>
+                                    </span>
+                                </span>
+                            </div>
+                            <div style={{fontSize: '1.5rem', marginBottom: '1rem'}}>{this.state.country}</div>
+                            <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString() + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </div>
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '180px'}}>
                             <div style={{display: 'flex', alignItems: 'center'}}>

@@ -6,7 +6,7 @@ const DeatilsWrapper = styled.div`
     width: 70%;
     z-index: 1;
     padding: 10px 20px 0px 20px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
     height: max-content;
     border-radius: 4px;
     display: flex;
@@ -49,7 +49,7 @@ function setIcon(name) {
 function Details(props) {
     let name = props.current.weather[0].main
     return (
-        <div style={{fontWeight: '500', fontSize: '1.3rem', fontFamily: 'sans-serif', display: 'flex', width: '60%', padding: '60px 30px 30px 0px'}}>
+        <div style={{fontWeight: '500', fontSize: '1.3rem', fontFamily: 'sans-serif', display: 'flex', width: '60%', padding: '50px 30px 30px 0px'}}>
             <DeatilsWrapper>
                 <div style={{borderBottom: '2px solid white', padding: '5px'}}>Details</div>
                 <div style={{flex: '1', padding: '10px 0px', display: 'flex'}}>
@@ -63,11 +63,11 @@ function Details(props) {
                         </Item>
                         <Item>
                             <div>Humidity</div>
-                            <div>{props.current.humidity}%</div>
+                            <div>{props.current.humidity} %</div>
                         </Item>
                         <Item>
                             <div>Visibility</div>
-                            <div>{props.current.visibility}m</div>
+                            <div>{props.current.visibility} m</div>
                         </Item>
                         <Item>
                             <div>UV Index</div>
@@ -75,11 +75,11 @@ function Details(props) {
                         </Item>
                         <Item>
                             <div>Clouds</div>
-                            <div>{props.current.clouds}%</div>
+                            <div>{props.current.clouds} %</div>
                         </Item>
                         <Item>
                             <div>Wind Speed</div>
-                            <div>{props.current.wind_speed}m/s</div>
+                            <div>{props.current.wind_speed} m/s</div>
                         </Item>
                         <Item>
                             <div>Wind Direction</div>
@@ -87,11 +87,11 @@ function Details(props) {
                         </Item>
                         <Item>
                             <div>Sunrise</div>
-                            <div>{new Date(props.current.sunrise*1000).toLocaleTimeString()}</div>
+                            <div>{new Date(props.current.sunrise*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </Item>
                         <Item style={{borderBottom: 'none'}}>
                             <div>Sunset</div>
-                            <div>{new Date(props.current.sunset*1000).toLocaleTimeString()}</div>
+                            <div>{new Date(props.current.sunset*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </Item>
                 
                     </div>

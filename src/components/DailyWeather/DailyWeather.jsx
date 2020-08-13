@@ -209,8 +209,8 @@ export default class DailyWeather extends Component{
         const {data, hourly} = this.props;        
 
         return(
-            <div style={{fontFamily: 'sans-serif', fontSize:'1.2rem',color:'white', position: 'relative', minHeight: '600px'}}>
-                <div style={{flexDirection: 'column', alignItems: 'center', display: 'flex', padding: '10px 20px 0px 20px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '4px', position: 'absolute', right: '270px', width: '900px'}}>
+            <div style={{fontFamily: 'sans-serif', fontSize:'1.2rem',color:'white', position: 'relative', minHeight: '800px'}}>
+                <div style={{flexDirection: 'column', alignItems: 'center', display: 'flex', padding: '10px 20px 0px 20px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '4px', position: 'absolute', right: '225px', width: '900px'}}>
                 <div style={{borderBottom: '2px solid white', padding: '5px', width: '100%'}}>Forecast</div>
                     <HourlyWeather hourly={hourly}/>
                     <Table>

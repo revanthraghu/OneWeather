@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const DeatilsWrapper = styled.div`
     color: white;
-    width: 70%;
+    width: 80%;
     z-index: 1;
     padding: 10px 20px 0px 20px;
     background-color: rgba(0,0,0,0.6);
@@ -49,7 +49,7 @@ function setIcon(name) {
 function Details(props) {
     let name = props.current.weather[0].main
     return (
-        <div style={{fontWeight: '500', fontSize: '1.3rem', fontFamily: 'sans-serif', display: 'flex', width: '60%', padding: '50px 30px 30px 0px'}}>
+        <div style={{fontWeight: '500', fontSize: '1.3rem', fontFamily: 'sans-serif', display: 'flex', width: '40%', padding: '50px 30px 30px 0px'}}>
             <DeatilsWrapper>
                 <div style={{borderBottom: '2px solid white', padding: '5px'}}>Details</div>
                 <div style={{flex: '1', padding: '10px 0px', display: 'flex'}}>

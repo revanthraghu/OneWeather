@@ -8,18 +8,37 @@ class CurrentWeather extends React.Component {
             location: '',
             search: false,
             input: '',
-            country: ''
+            country: '',
+            time: '',
+            tempdt: this.props.weather.dt
         }
     }
 
     componentDidMount() {
-            try {
-                axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.coords[0]}+${this.props.coords[1]}&key=1c6911666853447eac0030866cf19765`)
-                .then(res => {
-                    this.setState({location: res.data.results[0].components.city || res.data.results[0].components.state_district, country: res.data.results[0].components.country})})
-            } catch (error) {
-                console.log(error)
-            }
+        try {
+            axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.coords[0]}+${this.props.coords[1]}&key=1c6911666853447eac0030866cf19765`)
+            .then(res => {
+                this.setState({location: res.data.results[0].components.city || res.data.results[0].components.state_district, country: res.data.results[0].components.country})})
+        } catch (error) {
+            console.log(error)
+        }
+
+        this.intervalID = setInterval(
+            () => this.tick(this.state.tempdt),
+            1000
+          )
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalID);
+    }
+
+    tick = (e) => {
+        let res = new Date(e*1000).toDateString() + ', ' + new Date(e*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
+        this.setState({ 
+          time: res,
+          tempdt: this.state.tempdt + 1
+        })
     }
 
     setIcon = () => {
@@ -117,7 +136,7 @@ class CurrentWeather extends React.Component {
                                 </span>
                             </div>
                             <div style={{fontSize: '1.5rem', marginBottom: '1rem'}}>{this.state.country}</div>
-                            <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString() + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString('en-US', { timeZone: this.props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                            <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString('en-US', {timeZone: this.props.timeZone}) + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString('en-US', { timeZone: this.props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </div>
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '180px'}}>
                             <div style={{display: 'flex', alignItems: 'center'}}>

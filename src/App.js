@@ -17,7 +17,7 @@ const VideoContainer = styled.div`
         min-width: 100%; 
         min-height: 100%; 
         width: auto;
-        height: auto;
+        height: max-content;
         position: absolute;
         top: 50%;
         left: 50%;

@@ -125,9 +125,9 @@ class CurrentWeather extends React.Component {
                                 <div style={{fontSize: '1.3rem'}}>{this.props.weather.weather[0].description[0].toUpperCase() + this.props.weather.weather[0].description.slice(1)}</div>
                             </div>
                             <div style={{color: 'white', fontSize: '1.2rem'}}>
-                                <i className="fas fa-arrow-up"></i>
+                                <i style={{color:'#F44336'}} className="fas fa-arrow-up"></i>
                                 <span style={{padding: '0 15px'}}>{Math.round(this.props.temps[1])}&deg;</span>
-                                <i className="fas fa-arrow-down"></i>
+                                <i style={{color:'#65a4f1'}} className="fas fa-arrow-down"></i>
                                 <span style={{padding: '0 15px'}}>{Math.round(this.props.temps[0])}&deg;</span>
                             </div>
                             <div>

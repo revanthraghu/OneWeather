@@ -10,6 +10,7 @@ import { Table } from './Table';
 import { MinTempTip } from './MinTempTip';
 import { Tooltip } from './Tooltip';
 import { MaxTempTip } from './MaxTempTip';
+import HourlyWeather from './HourlyWeather'
 
 const Row = styled.tr`
     &:hover{
@@ -25,6 +26,7 @@ const SecondRow = styled.tr`
 
 const Col1 = styled.td`
     padding: 10px;
+    border-bottom: 1px solid rgb(150,150,150);
 `;
 
 export default class DailyWeather extends Component{
@@ -170,21 +172,46 @@ export default class DailyWeather extends Component{
             })
         }
     }
+    setIcon = (name) => {
+        if(name === 'Thunderstorm') {
+            return 'thunderstorm.png'
+        }
+        else if(name === 'Drizzle') {
+            return 'drizzle.png'
+        }
+        else if(name === 'Rain') {
+            return 'rain.png'
+        }
+        else if(name === 'Snow') {
+            return 'snow.png'
+        }
+        else if(name === 'Clear') {
+            return 'clear.png'
+        }
+        else if(name === 'Clouds') {
+            return 'cloud.png'
+        }
+        else {
+            return 'haze.png'
+        }
+    }
 
     render(){
-        const {data} = this.props;
-        console.log(data)
-        
+        const {data, hourly} = this.props;        
+
         return(
-            <div style={{fontSize:'25px',color:'white',position:'absolute', top:'600px',left:'200px'}}>
-                <Table>
-                    <tbody>
+            <div style={{fontFamily: 'sans-serif', fontSize:'1.2rem',color:'white', position: 'relative', minHeight: '600px'}}>
+                <div style={{flexDirection: 'column', alignItems: 'center', display: 'flex', padding: '10px 20px 0px 20px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '4px', position: 'absolute', right: '240px', width: '900px'}}>
+                <div style={{borderBottom: '2px solid white', padding: '5px', width: '100%'}}>Forecast</div>
+                    <HourlyWeather hourly={hourly}/>
+                    <Table>
+                    <tbody style={{padding: '20px'}}>
                         {data.map((e,i)=>(<React.Fragment key={e.dt}>
                             <Row onClick={this.toggleData}>
                                 <Day className={i+1}>{this.findDay(e.dt)}</Day>
 
                                 <Weather className={i+1}>
-                                    {e.weather[0].main}
+                                    <img style={{height: '32px', width: '32px'}} src={this.setIcon(e.weather[0].main)} alt=""/>
                                 </Weather>
                                 
                                 <Perception className={i+1}>
@@ -193,12 +220,12 @@ export default class DailyWeather extends Component{
                                 </Perception>
                                 
                                 <MaxTemp className={i+1}>
-                                    {e.temp.max}&deg;
+                                    {Math.round(e.temp.max)}&deg;
                                     <MaxTempTip>Max. Temp</MaxTempTip>
                                 </MaxTemp>
                                 
                                 <MinTemp className={i+1}>
-                                    {e.temp.min}&deg;
+                                    {Math.round(e.temp.min)}&deg;
                                     <MinTempTip>Min. Temp</MinTempTip>
                                 </MinTemp>
                             </Row>
@@ -251,6 +278,7 @@ export default class DailyWeather extends Component{
                         ))}
                     </tbody>
                 </Table>
+                </div>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 export const Table = styled.table`
-  background: black;
+  /* background: rgba(0,0,0,0.6); */
   border-collapse: collapse;
-  opacity: 0.8;
+  /* opacity: 0.6; */
+  width: 100%;
 `;

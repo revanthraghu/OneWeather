@@ -87,11 +87,11 @@ function Details(props) {
                         </Item>
                         <Item>
                             <div>Sunrise</div>
-                            <div>{new Date(props.current.sunrise*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                            <div>{new Date(props.current.sunrise*1000).toLocaleTimeString('en-US', { timeZone: props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </Item>
                         <Item style={{borderBottom: 'none'}}>
                             <div>Sunset</div>
-                            <div>{new Date(props.current.sunset*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                            <div>{new Date(props.current.sunset*1000).toLocaleTimeString('en-US', { timeZone: props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </Item>
                 
                     </div>

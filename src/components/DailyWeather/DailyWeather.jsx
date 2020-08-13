@@ -69,7 +69,7 @@ export default class DailyWeather extends Component{
     }
 
     findDateString = e => {
-        let date = new Date((e * 1000)).toDateString();
+        let date = new Date((e * 1000)).toDateString({timeZone: this.props.timeZone});
         return date;
     }
 
@@ -212,7 +212,7 @@ export default class DailyWeather extends Component{
             <div style={{fontFamily: 'sans-serif', fontSize:'1.2rem',color:'white', position: 'relative', minHeight: '800px'}}>
                 <div style={{flexDirection: 'column', alignItems: 'center', display: 'flex', padding: '10px 20px 0px 20px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '4px', position: 'absolute', right: '225px', width: '900px'}}>
                 <div style={{borderBottom: '2px solid white', padding: '5px', width: '100%'}}>Forecast</div>
-                    <HourlyWeather hourly={hourly}/>
+                    <HourlyWeather timeZone={this.props.timeZone} hourly={hourly}/>
                     <Table>
                     <tbody style={{padding: '20px'}}>
                         {data.map((e,i)=>(<React.Fragment key={e.dt}>
@@ -268,8 +268,8 @@ export default class DailyWeather extends Component{
                                         <div><b>Night:</b> {e.feels_like.night}&deg;</div>
                                     </td>
                                     <td style={{padding: '10px'}}>
-                                        <div style={{paddingBottom:'10px'}}><b>Sun Rise:</b> {new Date(e.sunrise*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
-                                        <div style={{paddingBottom:'10px'}}><b>Sun Set:</b> {new Date(e.sunset*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Sun Rise:</b> {new Date(e.sunrise*1000).toLocaleTimeString('en-US', {timeZone: this.props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Sun Set:</b> {new Date(e.sunset*1000).toLocaleTimeString('en-US', {timeZone: this.props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                                         <div style={{paddingBottom:'10px'}}><b>UV Index:</b> {e.uvi}</div>
                                         <div style={{paddingBottom:'10px'}}><b>Pressure:</b> {e.pressure} hPa</div>
                                         <div style={{paddingBottom:'10px'}}><b>Wind Degree:</b> {e.wind_deg}&deg;</div>

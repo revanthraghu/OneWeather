@@ -122,10 +122,10 @@ class App extends React.Component {
             {this.setVideo(this.state.data.current.weather[0].main)}
           </VideoContainer>
           <div style={{justifyContent: 'center', display: 'flex'}}>
-            <CurrentWeather coords={[this.state.lat, this.state.lon]} saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
-            <Details current={this.state.data.current}/>
+            <CurrentWeather timeZone={this.state.data.timezone} coords={[this.state.lat, this.state.lon]} saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
+            <Details timeZone={this.state.data.timezone} current={this.state.data.current}/>
           </div>
-          <DailyWeather hourly={this.state.data.hourly} data={this.state.data.daily} />
+          <DailyWeather timeZone={this.state.data.timezone} hourly={this.state.data.hourly} data={this.state.data.daily} />
         </React.Fragment>
       );
     }

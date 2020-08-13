@@ -117,7 +117,7 @@ class CurrentWeather extends React.Component {
                                 </span>
                             </div>
                             <div style={{fontSize: '1.5rem', marginBottom: '1rem'}}>{this.state.country}</div>
-                            <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString() + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                            <div style={{fontSize: '1.2rem'}}>{new Date(this.props.weather.dt*1000).toDateString() + ', ' + new Date(this.props.weather.dt*1000).toLocaleTimeString('en-US', { timeZone: this.props.timeZone, hour: '2-digit', minute: '2-digit', hour12: true })}</div>
                         </div>
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '180px'}}>
                             <div style={{display: 'flex', alignItems: 'center'}}>

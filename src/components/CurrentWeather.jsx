@@ -16,7 +16,7 @@ class CurrentWeather extends React.Component {
             try {
                 axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.coords[0]}+${this.props.coords[1]}&key=1c6911666853447eac0030866cf19765`)
                 .then(res => {
-                    this.setState({location: res.data.results[0].components.city, country: res.data.results[0].components.country})})
+                    this.setState({location: res.data.results[0].components.city || res.data.results[0].components.state_district, country: res.data.results[0].components.country})})
             } catch (error) {
                 console.log(error)
             }
@@ -79,7 +79,7 @@ class CurrentWeather extends React.Component {
                     try {
                         axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=1c6911666853447eac0030866cf19765`)
                         .then(res => {
-                            this.setState({location: res.data.results[0].components.city, country: res.data.results[0].components.country})})
+                            this.setState({location: res.data.results[0].components.city || res.data.results[0].components.state_district, country: res.data.results[0].components.country})})
                     } catch (error) {
                         console.log(error)
                     }

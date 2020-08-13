@@ -12,8 +12,14 @@ The background changes according to the current weather.
 <br/>
 <br/>
 In case the user is not giving permission for accessing the local location, the website will show the weather information of Bengaluru, India.
-The user will be able to search for other places in the search field provided.
 <br/>
 <br/>
 <br/>
 ![Default Landing](/public/landingdefault.png)
+
+## Search by Location
+The user will be able to search for other places in the search field provided.
+<br/>
+<br/>
+<br/>
+![LocationBySearch](/public/searchbyloc.png)

@@ -173,6 +173,7 @@ export default class DailyWeather extends Component{
             })
         }
     }
+
     setIcon = (name) => {
         if(name === 'Thunderstorm') {
             return 'thunderstorm.png'
@@ -195,6 +196,13 @@ export default class DailyWeather extends Component{
         else {
             return 'haze.png'
         }
+    }
+
+    weatherDescription = (e) => {
+        let element = e.split('')
+        let temp = element[0].toUpperCase();
+        element[0] = temp;
+        return element.join('')
     }
 
     render(){
@@ -232,15 +240,13 @@ export default class DailyWeather extends Component{
                                 </MinTemp>
                             </Row>
                             {this.state[i] && 
-                            
-                                // <table>
 
                                 <SecondRow>
                                     <Col1>
                                       <b>{this.findDateString(e.dt)}</b>
                                     </Col1>
                                     <td style={{padding:'10px'}}>
-                                        <div style={{paddingBottom:'10px'}}><b>Weather:</b> {e.weather[0].description.toUpperCase()}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Weather:</b> {this.weatherDescription(e.weather[0].description)}</div>
                                         <div style={{paddingBottom:'10px'}}><b>Cloud:</b> {`${e.clouds}%`}</div>
                                         <div style={{paddingBottom:'10px'}}><b>Dew-point:</b> {`${e.dew_point}`}&deg;</div>
                                         {e.rain && <div style={{paddingBottom:'10px'}}><b>Rain:</b> {`${e.rain}mm`}</div>}

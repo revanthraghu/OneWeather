@@ -64,7 +64,7 @@ class App extends React.Component {
       console.log(error)
     }
       //temporarily using saved data to avoid extra api calls
-      //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+      // this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
   }
 
   locationDenied = () => {

@@ -12,15 +12,15 @@ class CurrentWeather extends React.Component {
         }
     }
 
-    componentDidMount() {
-            try {
-                axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.coords[0]}+${this.props.coords[1]}&key=1c6911666853447eac0030866cf19765`)
-                .then(res => {
-                    this.setState({location: res.data.results[0].components.city || res.data.results[0].components.state_district, country: res.data.results[0].components.country})})
-            } catch (error) {
-                console.log(error)
-            }
-    }
+    // componentDidMount() {
+    //         try {
+    //             axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${this.props.coords[0]}+${this.props.coords[1]}&key=1c6911666853447eac0030866cf19765`)
+    //             .then(res => {
+    //                 this.setState({location: res.data.results[0].components.city || res.data.results[0].components.state_district, country: res.data.results[0].components.country})})
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    // }
 
     setIcon = () => {
         let name = this.props.weather.weather[0].main

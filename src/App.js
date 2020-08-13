@@ -42,29 +42,29 @@ class App extends React.Component {
 
   getPosition = (position) => {
     //get weather daat from api
-    try {
-      axios({
-        method: 'GET',
-        baseURL: 'https://api.openweathermap.org/data/2.5',
-        url: '/onecall',
-        params: { 
-          lat: position.coords.latitude, 
-          lon: position.coords.longitude,
-          exclude: 'minutely',
-          units: 'metric',
-          appid: process.env.REACT_APP_MY_SECRET_KEY
-        }
-      })
-      .then(res => this.setState({
-        data: res.data, 
-        lat: position.coords.latitude, 
-        lon: position.coords.longitude
-      }))
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   axios({
+    //     method: 'GET',
+    //     baseURL: 'https://api.openweathermap.org/data/2.5',
+    //     url: '/onecall',
+    //     params: { 
+    //       lat: position.coords.latitude, 
+    //       lon: position.coords.longitude,
+    //       exclude: 'minutely',
+    //       units: 'metric',
+    //       appid: process.env.REACT_APP_MY_SECRET_KEY
+    //     }
+    //   })
+    //   .then(res => this.setState({
+    //     data: res.data, 
+    //     lat: position.coords.latitude, 
+    //     lon: position.coords.longitude
+    //   }))
+    // } catch (error) {
+    //   console.log(error)
+    // }
       //temporarily using saved data to avoid extra api calls
-      //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+      this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
   }
 
   componentDidMount() {

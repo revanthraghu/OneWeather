@@ -11,6 +11,7 @@ import { MinTempTip } from './MinTempTip';
 import { Tooltip } from './Tooltip';
 import { MaxTempTip } from './MaxTempTip';
 import HourlyWeather from './HourlyWeather'
+import { WeatherTip } from './WeatherTip';
 
 const Row = styled.tr`
     &:hover{
@@ -212,6 +213,7 @@ export default class DailyWeather extends Component{
 
                                 <Weather className={i+1}>
                                     <img style={{height: '32px', width: '32px'}} src={this.setIcon(e.weather[0].main)} alt=""/>
+                                    <WeatherTip>{e.weather[0].main}</WeatherTip>
                                 </Weather>
                                 
                                 <Perception className={i+1}>
@@ -235,37 +237,37 @@ export default class DailyWeather extends Component{
 
                                 <SecondRow>
                                     <Col1>
-                                      {this.findDateString(e.dt)}
+                                      <b>{this.findDateString(e.dt)}</b>
                                     </Col1>
                                     <td style={{padding:'10px'}}>
-                                        <div>Weather: {e.weather[0].description.toUpperCase()}</div>
-                                        <div>Cloud: {`${e.clouds}%`}</div>
-                                        <div>Dew-point: {`${e.dew_point}`}&deg;</div>
-                                        <div>Humidity: {`${e.humidity}%`}</div>
-                                        {e.rain && <div>Rain: {`${e.rain}mm`}</div>}
-                                        {e.snow && <div>Snow: {`${e.snow}mm`}</div>}
+                                        <div style={{paddingBottom:'10px'}}><b>Weather:</b> {e.weather[0].description.toUpperCase()}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Cloud:</b> {`${e.clouds}%`}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Dew-point:</b> {`${e.dew_point}`}&deg;</div>
+                                        {e.rain && <div style={{paddingBottom:'10px'}}><b>Rain:</b> {`${e.rain}mm`}</div>}
+                                        {e.snow && <div style={{paddingBottom:'10px'}}><b>Snow:</b> {`${e.snow}mm`}</div>}
+                                        <div><b>Humidity:</b> {`${e.humidity}%`}</div>
                                     </td>
                                     <td style={{padding: '10px',background:'yellow'}}>
-                                        <div style={{color:'red'}}><u>Actual Temp</u></div>
-                                        <div>Morning: {e.temp.morn}&deg;</div>
-                                        <div>Day: {e.temp.day}&deg;</div>
-                                        <div>Evening: {e.temp.eve}&deg;</div>
-                                        <div>Night: {e.temp.night}&deg;</div>
+                                        <div style={{color:'red', paddingBottom:'5px'}}><u>Actual Temp</u></div>
+                                        <div style={{paddingBottom:'10px'}}><b>Morning:</b> {e.temp.morn}&deg;</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Day:</b> {e.temp.day}&deg;</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Evening:</b> {e.temp.eve}&deg;</div>
+                                        <div><b>Night:</b> {e.temp.night}&deg;</div>
                                     </td>
                                     <td style={{padding: '10px',background:'yellow'}}>
-                                        <div style={{color:'red'}}><u>Feels like</u></div>
-                                        <div>Morning: {e.feels_like.morn}&deg;</div>
-                                        <div>Day: {e.feels_like.day}&deg;</div>
-                                        <div>Evening: {e.feels_like.eve}&deg;</div>
-                                        <div>Night: {e.feels_like.night}&deg;</div>
+                                        <div style={{color:'red', paddingBottom:'5px'}}><u>Feels like</u></div>
+                                        <div style={{paddingBottom:'10px'}}><b>Morning:</b> {e.feels_like.morn}&deg;</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Day:</b> {e.feels_like.day}&deg;</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Evening:</b> {e.feels_like.eve}&deg;</div>
+                                        <div><b>Night:</b> {e.feels_like.night}&deg;</div>
                                     </td>
                                     <td style={{padding: '10px'}}>
-                                        <div>Sun Rise: {new Date(e.sunrise*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
-                                        <div>Sun Set: {new Date(e.sunset*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
-                                        <div>Midday UV Index: {e.uvi}</div>
-                                        <div>Pressure: {e.pressure} hPa</div>
-                                        <div>Wind Degree: {e.wind_deg}&deg;</div>
-                                        <div>Wind Speed: {e.wind_speed}m/s</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Sun Rise:</b> {new Date(e.sunrise*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Sun Set:</b> {new Date(e.sunset*1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>UV Index:</b> {e.uvi}</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Pressure:</b> {e.pressure} hPa</div>
+                                        <div style={{paddingBottom:'10px'}}><b>Wind Degree:</b> {e.wind_deg}&deg;</div>
+                                        <div><b>Wind Speed:</b> {e.wind_speed}m/s</div>
                                     </td>
                                     
                                 </SecondRow>

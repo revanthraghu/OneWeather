@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   getPosition = (position) => {
-    //get weather daat from api
+    //get weather data from api
     try {
       axios({
         method: 'GET',
@@ -67,11 +67,19 @@ class App extends React.Component {
       //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
   }
 
+  locationDenied = () => {
+    let position = {coords: {latitude: 12.9719, longitude: 77.5937}}
+    this.getPosition(position)
+  }
+
   componentDidMount() {
     //Ask for location permission
     //If location access denied show alert to say access required
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.getPosition);
+      navigator.geolocation.getCurrentPosition(this.getPosition, this.locationDenied);
+    }
+    else {
+      console.log('here')
     }
   }
 

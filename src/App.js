@@ -41,37 +41,45 @@ class App extends React.Component {
   }
 
   getPosition = (position) => {
-    //get weather daat from api
-    // try {
-    //   axios({
-    //     method: 'GET',
-    //     baseURL: 'https://api.openweathermap.org/data/2.5',
-    //     url: '/onecall',
-    //     params: { 
-    //       lat: position.coords.latitude, 
-    //       lon: position.coords.longitude,
-    //       exclude: 'minutely',
-    //       units: 'metric',
-    //       appid: process.env.REACT_APP_MY_SECRET_KEY
-    //     }
-    //   })
-    //   .then(res => this.setState({
-    //     data: res.data, 
-    //     lat: position.coords.latitude, 
-    //     lon: position.coords.longitude
-    //   }))
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    //get weather data from api
+    try {
+      axios({
+        method: 'GET',
+        baseURL: 'https://api.openweathermap.org/data/2.5',
+        url: '/onecall',
+        params: { 
+          lat: position.coords.latitude, 
+          lon: position.coords.longitude,
+          exclude: 'minutely',
+          units: 'metric',
+          appid: process.env.REACT_APP_MY_SECRET_KEY
+        }
+      })
+      .then(res => this.setState({
+        data: res.data, 
+        lat: position.coords.latitude, 
+        lon: position.coords.longitude
+      }))
+    } catch (error) {
+      console.log(error)
+    }
       //temporarily using saved data to avoid extra api calls
-      this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+      //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+  }
+
+  locationDenied = () => {
+    let position = {coords: {latitude: 12.9719, longitude: 77.5937}}
+    this.getPosition(position)
   }
 
   componentDidMount() {
     //Ask for location permission
     //If location access denied show alert to say access required
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.getPosition);
+      navigator.geolocation.getCurrentPosition(this.getPosition, this.locationDenied);
+    }
+    else {
+      console.log('here')
     }
   }
 

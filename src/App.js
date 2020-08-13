@@ -41,7 +41,6 @@ class App extends React.Component {
   }
 
   getPosition = (position) => {
-<<<<<<< HEAD
     //get weather data from api
     try {
       axios({
@@ -64,32 +63,8 @@ class App extends React.Component {
     } catch (error) {
       console.log(error)
     }
-=======
-    //get weather daat from api
-    // try {
-    //   axios({
-    //     method: 'GET',
-    //     baseURL: 'https://api.openweathermap.org/data/2.5',
-    //     url: '/onecall',
-    //     params: { 
-    //       lat: position.coords.latitude, 
-    //       lon: position.coords.longitude,
-    //       exclude: 'minutely',
-    //       units: 'metric',
-    //       appid: process.env.REACT_APP_MY_SECRET_KEY
-    //     }
-    //   })
-    //   .then(res => this.setState({
-    //     data: res.data, 
-    //     lat: position.coords.latitude, 
-    //     lon: position.coords.longitude
-    //   }))
-    // } catch (error) {
-    //   console.log(error)
-    // }
->>>>>>> 367847f22f82849dfc3a0d0bd787f10c7f43eaf2
       //temporarily using saved data to avoid extra api calls
-      this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
+      //this.setState({data: data, lat: position.coords.latitude, lon: position.coords.longitude})
   }
 
   locationDenied = () => {

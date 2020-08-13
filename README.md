@@ -1,7 +1,7 @@
-# one-weather
+# One Weather
 A web app that displays weather related info.
 
-## landing Page
+## Landing Page
 On landing page user will be asked to access the local location so that user will be able to see the local weather information.
 The background changes according to the current weather.
 <br/>

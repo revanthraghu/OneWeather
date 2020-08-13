@@ -11,13 +11,13 @@ const VideoContainer = styled.div`
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 100%; 
+    height: auto; 
     overflow: hidden;
     video {
         min-width: 100%; 
         min-height: 100%; 
         width: auto;
-        height: auto;
+        height: max-content;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -121,7 +121,7 @@ class App extends React.Component {
           <VideoContainer>
             {this.setVideo(this.state.data.current.weather[0].main)}
           </VideoContainer>
-          <div style={{display: 'flex', height: 'max-content'}}>
+          <div style={{justifyContent: 'center', display: 'flex'}}>
             <CurrentWeather coords={[this.state.lat, this.state.lon]} saveData={this.saveData} weather={this.state.data.current} temps={[this.state.data.daily[0].temp.min, this.state.data.daily[0].temp.max]}/>
             <Details current={this.state.data.current}/>
           </div>

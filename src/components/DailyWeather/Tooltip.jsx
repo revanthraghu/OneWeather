@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Tooltip = styled.span`
   visibility: hidden;
-  width: 80px;
+  width: 100px;
   background-color: white;
   color: black;
   text-align: center;

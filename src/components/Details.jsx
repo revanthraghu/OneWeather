@@ -95,7 +95,10 @@ function Details(props) {
                         </Item>
                         <Item>
                             <div>Wind Speed</div>
-                            <div>{props.current.wind_speed} m/s</div>
+                            <div>
+                                {props.current.wind_speed}
+                                {props.tempUnit === 'C'?' m/sec':' mi/h'}
+                            </div>
                         </Item>
                         <Item>
                             <div>Wind Direction</div>

@@ -193,7 +193,7 @@ export default class DailyWeather extends Component {
     };
 
     render() {
-        const { data, hourly } = this.props;
+        const { data, hourly, tempUnit } = this.props;
 
         return (
             <div
@@ -354,10 +354,11 @@ export default class DailyWeather extends Component {
                                                     <b>Pressure:</b> {e.pressure} hPa
                                                 </div>
                                                 <div style={{ paddingBottom: "10px" }}>
-                                                    <b>Wind Degree:</b> {e.wind_deg}&deg;
+                                                    <b>Wind Directon:</b> {e.wind_deg}&deg;
                                                 </div>
                                                 <div>
-                                                    <b>Wind Speed:</b> {e.wind_speed}m/s
+                                                    <b>Wind Speed:</b> {e.wind_speed}
+                                                    {tempUnit === 'C'?' metre/sec':' miles/hour'}
                                                 </div>
                                             </td>
                                         </SecondRow>

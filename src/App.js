@@ -215,11 +215,13 @@ class App extends React.Component {
               ]}
             />
             <Details
+              tempUnit={this.state.tempUnit}
               timeZone={this.state.data.timezone}
               current={this.state.data.current}
             />
           </div>
           <DailyWeather
+            tempUnit={this.state.tempUnit}
             timeZone={this.state.data.timezone}
             hourly={this.state.data.hourly}
             data={this.state.data.daily}

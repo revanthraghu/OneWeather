@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/one-weather/static/js/main.4b0a9dee.chunk.js",
+    "main.js.map": "/one-weather/static/js/main.4b0a9dee.chunk.js.map",
+    "runtime-main.js": "/one-weather/static/js/runtime-main.c5f8b6f0.js",
+    "runtime-main.js.map": "/one-weather/static/js/runtime-main.c5f8b6f0.js.map",
+    "static/js/2.8a67c78b.chunk.js": "/one-weather/static/js/2.8a67c78b.chunk.js",
+    "static/js/2.8a67c78b.chunk.js.map": "/one-weather/static/js/2.8a67c78b.chunk.js.map",
+    "index.html": "/one-weather/index.html",
+    "precache-manifest.46389884bbd2d9ec62584b70aeda67bc.js": "/one-weather/precache-manifest.46389884bbd2d9ec62584b70aeda67bc.js",
+    "service-worker.js": "/one-weather/service-worker.js",
+    "static/js/2.8a67c78b.chunk.js.LICENSE.txt": "/one-weather/static/js/2.8a67c78b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c5f8b6f0.js",
+    "static/js/2.8a67c78b.chunk.js",
+    "static/js/main.4b0a9dee.chunk.js"
+  ]
+}

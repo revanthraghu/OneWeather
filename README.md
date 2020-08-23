@@ -1,6 +1,6 @@
 # One Weather
 A web app that displays weather related info.
-[Visit Website](https://revanthraghu.github.io/one-weather/)
+[Visit Website](https://oneweather.netlify.app/)
 
 ## Landing Page
 On landing page user will be asked to access the local location so that user will be able to see the local weather information.

@@ -1,5 +1,5 @@
 # One Weather
-A web app that displays weather related info.
+A web app that displays weather information using the openweathermap API.
 [Visit Website](https://oneweather.netlify.app/)
 
 ## Landing Page
